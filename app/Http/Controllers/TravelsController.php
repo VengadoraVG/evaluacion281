@@ -16,6 +16,7 @@ class TravelsController extends Controller
 
     public function store()
     {
+        
         return view('amazing');
     }
 }

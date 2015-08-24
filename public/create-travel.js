@@ -30,9 +30,28 @@ var remove = function (index, array) {
   return array.slice(0, index).concat(array.slice(index, array.length));
 }
 
+var doMarkerStuff = function (event) {
+  var action = whichMarker().id;
+
+  switch (action) {
+  case 'mark-destination':
+    placeDestination(event.latLng);
+    break;
+  case 'mark-origin':
+    placeOrigin(event.latLng);
+    break;
+  case 'mark-activity':
+    placeActivity(event.latLng);
+    break;
+  default:
+    alert('ZOMG! that feature is not implemented yet :(');
+    break;
+  }
+};
+
 // initialices the google map. 
 var initialize = function () {
-  map = new google.maps.Map($('#destination-map')[0],
+  map = new google.maps.Map($('#adventure-map')[0],
                                 {
                                   center : new google.maps.LatLng(-16.5189, -68.1321),
                                   zoom : 6,
@@ -41,25 +60,7 @@ var initialize = function () {
 
   // TODO: try to make the map load faster
   // markers listener...
-  google.maps.event.addListener(map, 'click', function (event) {
-    var action = whichMarker().id;
-
-    switch (action) {
-    case 'mark-destination':
-      placeDestination(event.latLng);
-      break;
-    case 'mark-origin':
-      placeOrigin(event.latLng);
-      break;
-    case 'mark-activity':
-      placeActivity(event.latLng);
-      break;
-    default:
-      alert('ZOMG! that feature is not implemented yet :(');
-      break;
-    }
-  });
-
+  google.maps.event.addListener(map, 'click', doMarkerStuff);
 };
 
 /*

@@ -49,12 +49,18 @@
                             <img src="/img/remove-activity.png" />
                             Eliminar actividad
                         </button>
+
+                        <button type="button" class="btn btn-default mark-placer"
+                                id="analize">
+                            <img src="/img/analize.png" />
+                            Analizar punto
+                        </button>
                     </div>
                 </div>
 
                 <!-- THE MAP! -->
                 <div class="col-sm-9">
-                    <div id="destination-map" class="map center-block"></div>
+                    <div id="adventure-map" class="map center-block"></div>
                 </div>
             </div>
         </div>
@@ -71,6 +77,8 @@
 
             <input type="hidden" name="destination-lat-lng" />
             <input type="hidden" name="origin-lat-lng" />
+            <input type="hidden" name="map-zoom" />
+            <input type="hidden" name="activities" />
 
             <p>
                 <button type="submit" class="btn btn-success btn-lg btn-block center-block">
