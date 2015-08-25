@@ -27,5 +27,10 @@ Route::get('lol', function () {
 
 Route::get('create-travel', ['uses' => 'TravelsController@create']);
 
-Route::post('wasd', ['as' => 'wasd',
-                     'uses' => 'TravelsController@store']);
+Route::post('create-travel', [ 'as' => 'create-travel',
+                               'uses' => 'TravelsController@store',
+                               'before' => 'csrf' ]);
+
+Route::get('amazing', function () {
+    return view('amazing');
+});

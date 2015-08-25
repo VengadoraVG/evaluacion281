@@ -1,6 +1,6 @@
 var destination,
     origin,
-    activity = [];
+    activityMarker = [];
 
 // returns the html button of the mark placer selected.
 var whichMarker = function () {
@@ -31,7 +31,8 @@ var remove = function (index, array) {
 }
 
 var doMarkerStuff = function (event) {
-  var action = whichMarker().id;
+  var marker = whichMarker(),
+      action = !whichMarker() || whichMarker().id;
 
   switch (action) {
   case 'mark-destination':
@@ -114,18 +115,18 @@ var activityDeletion = function (event) {
  * adds an activity on the itinerary.
  */
 var placeActivity = function (latLng, position) {
-  var activityMarker = placeMark(latLng, 'img/activity.png');
+  var marker = placeMark(latLng, 'img/activity.png');
   if (!position) {
-    activityMarker.index = activity.length;
-    activity.push(activityMarker);
+    marker.index = activityMarker.length;
+    activityMarker.push(marker);
   } else {
-    activityMarker.index = position;
-    activity = insertAt(activityMarker, position, activity);
+    marker.index = position;
+    activityMarker = insertAt(marker, position, activityMarker);
   }
 
-  activityMarker.addListener('click', function (event) {
+  marker.addListener('click', function (event) {
     if (whichMarker().id === 'remove-activity') {
-      remove(this.indexactivity, activity);
+      remove(this.index, activityMarker);
       this.setMap(null);
     }
   })
@@ -155,10 +156,25 @@ $( document ).ready(function () {
 });
 
 $( document ).submit(function (e) {
-  if (!$('input[name=destination-lat-lng]')[0].value) {
-    alert('ZOMG!! no hay destino marcado en el mapa...')
+
+  if (!$('input[name=destination-lat-lng]')[0].value ||
+      !$('input[name=origin-lat-lng]')[0].value) {
+    alert('ZOMG!! no hay destino u origen marcado en el mapa...')
     e.preventDefault();
   }
+
+  $('input[name="map-zoom"]')[0].value = map.zoom;
+  $('input[name="map-lat-lng"]')[0].value = JSON.stringify(map.getCenter());
+
+  // setting up activities...
+  var activity = [];
+
+  for (var i=0; i<activityMarker.length; i++) {
+    console.log(activityMarker[i].position);
+    activity.push({ position: JSON.stringify(activityMarker[i].position) });
+  }
+
+  $('input[name="activities"]')[0].value = JSON.stringify(activity);
 });
 
 google.maps.event.addDomListener(window, 'load', initialize);

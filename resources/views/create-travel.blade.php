@@ -66,7 +66,7 @@
         </div>
 
         <div class="container">
-            {!! Form::open(['route' => 'wasd',
+            {!! Form::open(['route' => 'create-travel',
                             'class' => 'form',
                             'method' => 'post']) !!}
 
@@ -78,6 +78,7 @@
             <input type="hidden" name="destination-lat-lng" />
             <input type="hidden" name="origin-lat-lng" />
             <input type="hidden" name="map-zoom" />
+            <input type="hidden" name="map-lat-lng" />
             <input type="hidden" name="activities" />
 
             <p>

@@ -18,6 +18,9 @@ class CreateActivityTable extends Migration
             $table->text('description');
             $table->dateTime('beginning');
             $table->double('duration_in_hours');
+
+            $table->integer('travel')->unsigned();
+            $table->foreign('travel')->references('id')->on('travel');
         });
     }
 
