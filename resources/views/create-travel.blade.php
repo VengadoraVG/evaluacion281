@@ -7,10 +7,6 @@
 @section('content')
     <div class="container">
         <p class="text-warning"><strong>TODO:</strong> añadir una lista de las actividades de este paseo, con la opción de gestionarlas: cambiar de orden, poner descripción, poner hora, orden automático? y quitar?</p>
-        <p class="text-danger">
-            <strong>TODO:</strong> Pero primero tal vez deberías jugar con el post, y conseguir que lo que ya tienes se almacene en la base de datos ;) ah! y no olvides añadir las migraciones para guardar el latlng del destino, y el de las actividades... pero el de las actividades creo que deberías hacerlo cuando termines el primer issue... uff!!! un gran trabajo por delante con este issue y el anterior!!! choose wiselly... <code>X3 button pressed. The system is going halt</code>
-        </p>
-
         <h1 class="text-center">Crea un paseo!</h1>
 
         <div class="container">

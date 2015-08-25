@@ -27,7 +27,7 @@ var insertAt = function (value, index, array) {
  * removes an element form an array
  */
 var remove = function (index, array) {
-  return array.slice(0, index).concat(array.slice(index, array.length));
+  return array.slice(0, index).concat(array.slice(index+1, array.length));
 }
 
 var doMarkerStuff = function (event) {
@@ -126,7 +126,9 @@ var placeActivity = function (latLng, position) {
 
   marker.addListener('click', function (event) {
     if (whichMarker().id === 'remove-activity') {
-      remove(this.index, activityMarker);
+      console.log("deleting " + this.index + " from ", activityMarker);
+      activityMarker = remove(this.index, activityMarker);
+      console.log(activityMarker);
       this.setMap(null);
     }
   })
